@@ -1,5 +1,8 @@
 package com.qa.opencart.tests;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.AssertJUnit;
 import static com.qa.opencart.constants.AppConstants.HOME_PAGE_FRACTION_URL;
 import static com.qa.opencart.constants.AppConstants.HOME_PAGE_TITLE;
 
@@ -38,7 +41,7 @@ public class AccountsPageTest extends BaseTest{
 	@Owner("Naveen")
 	@Test
 	public void accPageTitleTest() {
-		Assert.assertEquals(accPage.getAccPageTitle(), HOME_PAGE_TITLE) ;
+		AssertJUnit.assertEquals(accPage.getAccPageTitle(), HOME_PAGE_TITLE) ;
 	}
 	
 	@Description("checking open cart acc page url ...")
@@ -46,7 +49,7 @@ public class AccountsPageTest extends BaseTest{
 	@Owner("Naveen")
 	@Test
 	public void accPageURLTest() {
-		Assert.assertTrue(accPage.getAccPageURL().contains(HOME_PAGE_FRACTION_URL));
+		AssertJUnit.assertTrue(accPage.getAccPageURL().contains(HOME_PAGE_FRACTION_URL));
 	}
 	
 	@Description("checking open cart acc page headers...")
@@ -55,7 +58,7 @@ public class AccountsPageTest extends BaseTest{
 	@Test
 	public void accPageHeadersTest() {
 		List<String> actHeaderList = accPage.getAccPageHeaders();
-		Assert.assertEquals(actHeaderList, AppConstants.expectedAccPageHeadersList);
+		AssertJUnit.assertEquals(actHeaderList, AppConstants.expectedAccPageHeadersList);
 	}
 	
 	

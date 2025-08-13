@@ -1,5 +1,6 @@
 package com.qa.opencart.base;
 
+import org.testng.annotations.AfterMethod;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
@@ -78,6 +79,7 @@ public class BaseTest {
 	}
 	
 	
+	@AfterMethod
 	@Description("closing the browser..")
 	@AfterTest
 	public void tearDown() {

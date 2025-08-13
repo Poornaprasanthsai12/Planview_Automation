@@ -1,5 +1,8 @@
 package com.qa.opencart.tests;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.AssertJUnit;
 import java.util.Map;
 
 import org.testng.Assert;
@@ -42,7 +45,7 @@ public class ProductInfoPageTest extends BaseTest{
 		searchResultsPage =  accPage.doSearch(searchKey);
 		productInfoPage = searchResultsPage.selectProduct(productName);
 		String actHeader = productInfoPage.getProductHeader();
-		Assert.assertEquals(actHeader, productName);
+		AssertJUnit.assertEquals(actHeader, productName);
 	}
 	
 	
@@ -73,7 +76,7 @@ public class ProductInfoPageTest extends BaseTest{
 		searchResultsPage =  accPage.doSearch(searchKey);
 		productInfoPage = searchResultsPage.selectProduct(productName);
 		int actImageCount = productInfoPage.getProductImagesCount();
-		Assert.assertEquals(String.valueOf(actImageCount), expectedImageCount);
+		AssertJUnit.assertEquals(String.valueOf(actImageCount), expectedImageCount);
 	}
 	
 	
@@ -84,11 +87,11 @@ public class ProductInfoPageTest extends BaseTest{
 		Map<String, String> actualProductDetailsMap = productInfoPage.getProductDetailsMap();
 		
 		SoftAssert softAssert = new SoftAssert();
-		softAssert.assertEquals(actualProductDetailsMap.get("Brand"), "Apple");//P
-		softAssert.assertEquals(actualProductDetailsMap.get("Product Code"), "Product 18");//P
-		softAssert.assertEquals(actualProductDetailsMap.get("Availability"), "Out Of Stock");//P
-		softAssert.assertEquals(actualProductDetailsMap.get("productprice"), "$2,000.00");//P
-		softAssert.assertEquals(actualProductDetailsMap.get("extaxprice"), "$2,000.00");//P
+		AssertJUnit.assertEquals(actualProductDetailsMap.get("Brand"), "Apple");//P
+		AssertJUnit.assertEquals(actualProductDetailsMap.get("Product Code"), "Product 18");//P
+		AssertJUnit.assertEquals(actualProductDetailsMap.get("Availability"), "Out Of Stock");//P
+		AssertJUnit.assertEquals(actualProductDetailsMap.get("productprice"), "$2,000.00");//P
+		AssertJUnit.assertEquals(actualProductDetailsMap.get("extaxprice"), "$2,000.00");//P
 		
 		softAssert.assertAll();
 	}

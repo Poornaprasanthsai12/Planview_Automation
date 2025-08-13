@@ -1,5 +1,8 @@
 package com.qa.opencart.tests;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.AssertJUnit;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -25,7 +28,7 @@ public class SearchTest extends BaseTest{
 	public void searchTest() {
 		searchResultsPage = accPage.doSearch("macbook");
 		int actResultsCount = searchResultsPage.getResultsProductCount();
-		Assert.assertEquals(actResultsCount, 3);
+		AssertJUnit.assertEquals(actResultsCount, 3);
 	}
 	
 	

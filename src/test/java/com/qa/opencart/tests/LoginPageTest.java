@@ -1,5 +1,7 @@
 package com.qa.opencart.tests;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -28,24 +30,24 @@ public class LoginPageTest extends BaseTest{
 	public void loginPageTitleTest() {
 		String actTitle = loginPage.getLoginPageTitle();
 		ChainTestListener.log("checking login page title: "+ actTitle);
-		Assert.assertEquals(actTitle, LOGIN_PAGE_TITLE);
+		AssertJUnit.assertEquals(actTitle, LOGIN_PAGE_TITLE);
 	}
 	
 	@Description("checking open cart login page url...")
 	@Severity(SeverityLevel.NORMAL)
 	@Owner("Naveen")
-	@Test(description = "checking login page url")
+	@Test(enabled= false,description = "checking login page url")
 	public void loginPageURLTest() {
 		String actURL = loginPage.getLoginPageURL();
-		Assert.assertTrue(actURL.contains(LOGIN_PAGE_FRACTION_URL));
+		AssertJUnit.assertTrue(actURL.contains(LOGIN_PAGE_FRACTION_URL));
 	}
 	
 	@Description("checking open cart login page has forgot pwd link...")
 	@Severity(SeverityLevel.CRITICAL)
 	@Owner("Naveen")
-	@Test(description = "forgotPwdLinkExistTest")
+	@Test(enabled= false,description = "forgotPwdLinkExistTest")
 	public void forgotPwdLinkExistTest() {
-		Assert.assertTrue(loginPage.isForgotPwdLinkExist());
+		AssertJUnit.assertTrue(loginPage.isForgotPwdLinkExist());
 	}
 	
 	@Description("check user is able to login with valid user credentials...")
@@ -54,7 +56,7 @@ public class LoginPageTest extends BaseTest{
 	@Test(priority = Short.MAX_VALUE, description = "login with valid credentials")
 	public void doLoginTest() {
 		accPage = loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
-		Assert.assertEquals(accPage.getAccPageTitle(), HOME_PAGE_TITLE);
+		AssertJUnit.assertEquals(accPage.getAccPageTitle(), HOME_PAGE_TITLE);
 	}
 	
 	

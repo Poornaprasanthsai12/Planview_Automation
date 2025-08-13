@@ -63,7 +63,7 @@ public class DriverFactory {
 				initRemoteDriver("chrome");
 			} else {
 				// run it on local:
-				tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
+				tlDriver.set(new ChromeDriver());
 			}
 			break;
 		case "edge":
@@ -72,7 +72,7 @@ public class DriverFactory {
 				initRemoteDriver("edge");
 			} else {
 				// run it on local:
-				tlDriver.set(new EdgeDriver(optionsManager.getEdgeOptions()));
+				tlDriver.set(new EdgeDriver());
 			}
 			break;
 		case "firefox":
@@ -81,7 +81,7 @@ public class DriverFactory {
 				initRemoteDriver("firefox");
 			} else {
 				// run it on local:
-				tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
+				tlDriver.set(new FirefoxDriver());
 			}
 			break;
 		case "safari":

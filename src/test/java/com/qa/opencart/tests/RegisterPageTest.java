@@ -1,5 +1,8 @@
 package com.qa.opencart.tests;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.AssertJUnit;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -37,7 +40,7 @@ public class RegisterPageTest extends BaseTest{
 	
 	@Test(dataProvider = "getUserRegData")
 	public void userRegisterTest(String firstName, String lastName, String telephone, String password, String subscribe) {
-		Assert.assertTrue(
+		AssertJUnit.assertTrue(
 				registerPage.
 					userRegisteration(firstName, lastName, telephone, password, subscribe));
 	}

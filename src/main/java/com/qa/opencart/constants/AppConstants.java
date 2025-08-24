@@ -6,7 +6,7 @@ public class AppConstants {
 	
 	public static final int DEFAULT_TIMEOUT = 5;
 	public static final int MEDIUM_DEFAULT_TIMEOUT = 10;
-	public static final int LONG_DEFAULT_TIMEOUT = 15;
+	public static final int LONG_DEFAULT_TIMEOUT = 27;
 
 	
 	public static final String LOGIN_PAGE_TITLE = "Account Login11";

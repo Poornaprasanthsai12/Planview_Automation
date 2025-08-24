@@ -162,7 +162,7 @@ public class DriverFactory {
 				// System.out.println("env is null, hence running the tests on QA env by
 				// default...");
 				log.warn("env is null, hence running the tests on QA env by default...");
-				ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
+				ip = new FileInputStream("./src/test/resources/config/uat.config.properties");
 			} else {
 				System.out.println("Running tests on env: " + envName);
 				log.info("Running tests on env: " + envName);

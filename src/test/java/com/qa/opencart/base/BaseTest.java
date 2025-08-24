@@ -1,6 +1,7 @@
 package com.qa.opencart.base;
 
 import org.testng.annotations.AfterMethod;
+
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
@@ -17,11 +18,9 @@ import org.testng.annotations.Parameters;
 
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import com.qa.opencart.factory.DriverFactory;
-import com.qa.opencart.pages.AccountsPage;
+import com.qa.opencart.pages.HomePage;
 import com.qa.opencart.pages.LoginPage;
-import com.qa.opencart.pages.ProductInfoPage;
-import com.qa.opencart.pages.RegisterPage;
-import com.qa.opencart.pages.SearchResultsPage;
+
 import com.qa.opencart.utils.LogUtil;
 
 import io.qameta.allure.Description;
@@ -35,18 +34,15 @@ public class BaseTest {
 	protected Properties prop;
 	
 	protected LoginPage loginPage;
-	protected AccountsPage accPage;
-	protected SearchResultsPage searchResultsPage;
-	protected ProductInfoPage productInfoPage;
-	protected RegisterPage registerPage;
+	protected HomePage homepage;
 	
 	private static final Logger log = LogManager.getLogger(BaseTest.class);
 
 	
 	@Description("init the driver and properties")
-	@Parameters({"browser", "browserversion", "testname"})
+	@Parameters({"browser","browserversion","testname"})
 	@BeforeTest
-	public void setup(String browserName, String browserVersion, String testname) {
+	public void setup(String browserName, String  browserVersion, String  testname) {
 		df = new DriverFactory();
 		prop = df.initProp();
 		

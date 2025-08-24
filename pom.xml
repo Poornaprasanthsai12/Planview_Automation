@@ -17,7 +17,7 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<aspectj.version>1.9.19</aspectj.version>
-		<selenium.version>4.34.0</selenium.version>
+		<selenium.version>4.35.0</selenium.version>
 		<suiteXmlFile>src/test/resources/testrunners/testng_regression.xml </suiteXmlFile>
 	</properties>
 
@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>7.7.0</version>
+			<version>7.11.0</version>
 		</dependency>
 
 		<dependency>

@@ -602,5 +602,10 @@ public class ElementUtil {
 				.toString();
 		return Boolean.parseBoolean(flag);// true
 	}
+	
+	
+	public void returback_fromifrmae() {
+		driver.switchTo().defaultContent();
+	}
 
 }

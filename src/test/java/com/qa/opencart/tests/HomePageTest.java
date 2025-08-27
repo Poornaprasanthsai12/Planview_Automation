@@ -15,8 +15,13 @@ public class HomePageTest extends BaseTest{
 	public void login() {
 		
 		homepage = loginPage.doLogin(prop.getProperty("username"),prop.getProperty("password"));
-		homepage.searchBar("controls");
+		homepage.searchBar("issues");
 		homepage.controlsNewRecordCreation();
+		homepage.issueCreation("test1", "test2");
+		homepage.dropdown_Sourceoverride();
+		homepage.sltLeader();
+		homepage.switchtoiframe("slt");
+		homepage.saveIssue();
 	}
 	
 	

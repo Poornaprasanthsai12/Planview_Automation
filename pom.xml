@@ -18,7 +18,7 @@
 		<maven.compiler.target>17</maven.compiler.target>
 		<aspectj.version>1.9.19</aspectj.version>
 		<selenium.version>4.35.0</selenium.version>
-		<suiteXmlFile>src/test/resources/testrunners/testng_regression.xml </suiteXmlFile>
+		<suiteXmlFile>src/test/resources/testrunners/testng_chrome.xml </suiteXmlFile>
 	</properties>
 
 
@@ -58,6 +58,7 @@
 			<artifactId>poi-scratchpad</artifactId>
 			<version>3.9</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>ooxml-schemas</artifactId>

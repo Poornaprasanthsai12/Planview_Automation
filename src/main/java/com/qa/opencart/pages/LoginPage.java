@@ -16,11 +16,11 @@ public class LoginPage {
 	// 1. private By locators: OR
 	
 	
-	private final By username = By.id("txtUserName");
-	private final By password = By.id("txtpassword");
-	private final By loginBtn = By.xpath("//a[text()='Log In']");
-	private final By loginMethodDropDown = By.xpath("//div[ @class='mdc-select__anchor mdc-ripple-upgraded' and @role='button']");
-	private final By loginMethodSelect = By.xpath("//li[@data-value='ArcherManualLogin']");
+	private final By username = By.id("Username");
+	private final By password = By.id("UserPass");
+	
+	private final By sandBoxDropDown = By.xpath("//select[@name='DSN']");
+	private final By btnSignIn = By.xpath("//button[@title=' Sign In ']");
 
 	// 2. public page constr...
 	public LoginPage(WebDriver driver) {
@@ -44,15 +44,17 @@ public class LoginPage {
 //	}
 	
 	
-	public HomePage doLogin(String uname, String Password) {
-		eleUtil.doClick(loginMethodDropDown);
-		eleUtil.doClick(loginMethodSelect);
-		eleUtil.doClick(loginBtn);
-		eleUtil.doClick(username);
+	public HomePage doLogin(String uname, String Password, String Sandbox) throws InterruptedException {
+		
+		//eleUtil.doClick(sandBoxDropDown);
+		eleUtil.doSelectDropDownByValue(sandBoxDropDown, Sandbox);
+		
+		
+		
 		eleUtil.doSendKeys(username, uname);
-		eleUtil.doClick(password);
+		
 		eleUtil.doSendKeys(password, Password);
-		eleUtil.doClick(loginBtn);
+		eleUtil.doClick(btnSignIn);
 		
 		return new HomePage(driver);
 		

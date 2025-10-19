@@ -1,5 +1,6 @@
 package com.qa.opencart.utils;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -60,7 +61,7 @@ public class JavaScriptUtil {
 		js.executeScript("window.scrollTo(document.body.scrollHeight, 0)");
 	}
 	
-	public void scrollIntoView(WebElement element) {
+	public void scrollIntoView(WebElement element ) {
 		js.executeScript("arguments[0].scrollIntoView(true);", element);
 	}
 	

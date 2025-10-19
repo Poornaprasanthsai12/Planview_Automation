@@ -2,36 +2,41 @@ package com.qa.opencart.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.qa.opencart.constants.AppConstants;
 import com.qa.opencart.utils.ElementUtil;
+import com.qa.opencart.utils.JavaScriptUtil;
 
 public class HomePage {
 	
 	
 	private WebDriver driver;
 	private ElementUtil eleUtil;
+	
 
 	// 1. private By locators: OR
 	
 	
-	private final By searchbarapplications = By.xpath("//input[@placeholder='Filter']");
-	private final By controlsapp = By.xpath("//span[@aria-label='Issues']");
-	private final By ellipses = By.xpath("(//div[@class='tb-btn ' and @data-icon-pos='right'])[3]");
-	private final By newrecordcreation = By.xpath("//div[text()='New Record']");
-	private final By issuename = By.xpath("//input[@id='master_DefaultContent_rts_s1274_f2670c']");
-	private final By issuedescription = By.xpath("//div[@id='master_DefaultContent_rts_s1274_f2265c_text']");
-	private final By sourceoverride_dropdown = By.xpath("//div[@id='master_DefaultContent_rts_s1274_f7068c_ddl']");
-	private final By sourceoverride_value = By.xpath("//span[text()='SLOD - Testing']");
-	private final By sltLeader = By.xpath("(//td[@class='ActivatorCell'])[6]");
-	private final By iframe = By.id("aspiframe-1031-iframeEl");
-	private final By iframe_search = By.xpath("//input[@id='txtBox']");
-	private final By slt_iiframe = By.xpath("//iframe[@name='lookupWindow']");
-	private final By slltuser = By.xpath("//a[text()='User, SLT']");
-	private final By iframe_glass = By.xpath("//a[@id='srchBtn']");
-	private final By okbutton = By.xpath("//a[text()='OK']");
-	private final By save = By.xpath("(//div[@class='tb-btn '])[2]");
-	private final By saveifrmae = By.id("advsearchreport-1430-iframeEl");
+	private final By menuHeader = By.xpath("//div[@aria-label='Navigation breadcrumb']/button");
+	private final By administration = By.xpath("(//ul[@id='pv-menu-list']/li)[10]");
+	private final By user_Roles = By.xpath("//span[text()='Users and Roles']");
+	private final By configureUsers = By.xpath("//span[text()='Configure Users']");
+	private final By addUser = By.xpath("(//ul[@aria-label='Users and Roles']/li)[1]");
+	
+	private final By txt_input_user = By.xpath("//input[@class='inputBox']");
+	private final By user_search = By.xpath("//input[@id='btnSearch']");
+	
+	private final By resourceAssociatedUsers = By.xpath("//span[text()='Resources and Associated Users']");
+	
+	//private final WebElement createResource = (WebElement) By.xpath("//a[text()='Create Resource']");
+	
+	private final By createResource2 = By.xpath("//a[text()='Create Resource']");
+	
+	
+	
+	
+	
 	
 	
 	
@@ -40,70 +45,67 @@ public class HomePage {
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 		eleUtil = new ElementUtil(driver);
-	}
-	
-	public void searchBar(String applicationName) {
-		
-		eleUtil.isPageLoaded(AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.waitForAllElementsVisible(searchbarapplications, AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.doClick(searchbarapplications);
-		eleUtil.doSendKeys(searchbarapplications, applicationName);
-		eleUtil.doClick(controlsapp);
-		eleUtil.waitForAllElementsVisible(controlsapp, AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.isPageLoaded(AppConstants.LONG_DEFAULT_TIMEOUT);
-		
-	}
-	
-	public void controlsNewRecordCreation() {
-		eleUtil.waitForFrameAndSwitchToIt(iframe,AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.waitForAllElementsVisible(ellipses, AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.doClick(ellipses);
-		eleUtil.waitForAllElementsVisible(newrecordcreation, AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.doClick(newrecordcreation);
-		eleUtil.isPageLoaded(AppConstants.LONG_DEFAULT_TIMEOUT);
 		
 		
 	}
 	
-	
-	public void issueCreation(String issuename, String Issue_description) {
-		//eleUtil.waitForFrameAndSwitchToIt(iframe,AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.waitForElementPresence(this.issuename, AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.doSendKeys(this.issuename, issuename);
-		eleUtil.clickWithWait(this.issuedescription, AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.doClick(issuedescription);
+	public AddUserPage addUser() {
 		
-		eleUtil.doSendKeys(this.issuedescription, Issue_description);
+		eleUtil.isPageLoaded(AppConstants.DEFAULT_TIMEOUT);
+		eleUtil.doClick(menuHeader);
+		eleUtil.waitForElementVisible(administration,AppConstants.DEFAULT_TIMEOUT);
+		eleUtil.doClick(administration);
+		eleUtil.waitForElementVisible(user_Roles,AppConstants.DEFAULT_TIMEOUT);
+		eleUtil.doClick(user_Roles);
+		eleUtil.waitForElementVisible(addUser,AppConstants.DEFAULT_TIMEOUT);
+		eleUtil.doClick(addUser);
 		
-	}
-	
-	public void dropdown_Sourceoverride() {
-		eleUtil.doClick(sourceoverride_dropdown);
-		eleUtil.doClick(sourceoverride_value);
-	}
-	
-	public void sltLeader() {
-		eleUtil.doClick(sltLeader);
-		//eleUtil.returback_fromifrmae();
-	}
-	
-	public void switchtoiframe(String Sltleader) {
-		//eleUtil.waitForFrameAndSwitchToIt(iframe,AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.waitForFrameAndSwitchToIt(slt_iiframe, AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.clickWhenReady(iframe_search, AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.doClick(iframe_search);
-		eleUtil.doSendKeys(iframe_search, Sltleader);
-		eleUtil.doClick(iframe_glass);
-		eleUtil.waitForElementPresence(slltuser, AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.doClick(slltuser);
-		eleUtil.doClick(okbutton);
-	}
-	
-	public void saveIssue() {
-		eleUtil.returback_fromifrmae();
-		eleUtil.waitForFrameAndSwitchToIt(iframe, AppConstants.LONG_DEFAULT_TIMEOUT);
-		eleUtil.doClick(save);
+		return new AddUserPage(driver);
 		
 	}
+	
+     public AddUserPage configureUser(String fullName) {
+		
+		eleUtil.isPageLoaded(AppConstants.DEFAULT_TIMEOUT);
+		eleUtil.doClick(menuHeader);
+		eleUtil.waitForElementVisible(administration,AppConstants.DEFAULT_TIMEOUT);
+		eleUtil.doClick(administration);
+		eleUtil.waitForElementVisible(user_Roles,AppConstants.DEFAULT_TIMEOUT);
+		eleUtil.doClick(user_Roles);
+		eleUtil.waitForElementVisible(configureUsers,AppConstants.DEFAULT_TIMEOUT);
+		eleUtil.doClick(configureUsers);
+		
+		eleUtil.doSendKeys(txt_input_user,fullName);
+		eleUtil.doClick(user_search);
+		eleUtil.isPageLoaded(AppConstants.DEFAULT_TIMEOUT);
+		
+		return new AddUserPage(driver);
+		
+	}
+     
+     public CreateResourcePage resourceAssociated() {
+ 		
+ 		eleUtil.isPageLoaded(AppConstants.DEFAULT_TIMEOUT);
+ 		eleUtil.doClick(menuHeader);
+ 		eleUtil.waitForElementVisible(administration,AppConstants.DEFAULT_TIMEOUT);
+ 		eleUtil.doClick(administration);
+ 		eleUtil.waitForElementVisible(user_Roles,AppConstants.DEFAULT_TIMEOUT);
+ 		eleUtil.doClick(user_Roles);
+ 		eleUtil.waitForElementVisible(resourceAssociatedUsers,AppConstants.DEFAULT_TIMEOUT);
+ 		eleUtil.doClick(resourceAssociatedUsers);
+ 		eleUtil.isPageLoaded(AppConstants.DEFAULT_TIMEOUT);
+ 		eleUtil.waitForElementVisible(createResource2,AppConstants.DEFAULT_TIMEOUT);
+ 		eleUtil.doClick(createResource2);
+ 		eleUtil.isPageLoaded(AppConstants.DEFAULT_TIMEOUT);
+ 		
+ 		
+ 		
+ 		
+ 		return new CreateResourcePage(driver);
+ 		
+ 	}
+	
+	
+	
 
 }

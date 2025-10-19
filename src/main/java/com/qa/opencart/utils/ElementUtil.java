@@ -233,7 +233,9 @@ public class ElementUtil {
 	}
 
 	public boolean doSelectDropDownByVisibleText(By locator, String visibleText) {
+		clickWhenReady(locator,2);
 		Select select = new Select(getElement(locator));
+		//select.selectByVisibleText(visibleText);
 		try {
 			select.selectByVisibleText(visibleText);
 			return true;
@@ -243,9 +245,14 @@ public class ElementUtil {
 		}
 	}
 
-	public boolean doSelectDropDownByValue(By locator, String value) {
-		Select select = new Select(getElement(locator));
+	public boolean doSelectDropDownByValue(By locator, String value)  {
+		
+		
+		
 		try {
+			clickWhenReady(locator,5);
+			
+			Select select = new Select(getElement(locator));
 			select.selectByValue(value);
 			return true;
 		} catch (NoSuchElementException e) {
@@ -607,5 +614,22 @@ public class ElementUtil {
 	public void returback_fromifrmae() {
 		driver.switchTo().defaultContent();
 	}
+	
+	public  void selectDate( String expMonthYear, String day) {
+	    By monthYearLocator = By.xpath("//div[@class='ui-datepicker-title']");
+	    By dayLocator = By.linkText(day);
+
+	    String actMonthYear = driver.findElement(monthYearLocator).getText();
+	    System.out.println("Current displayed month/year: " + actMonthYear);
+
+	    while (!actMonthYear.equalsIgnoreCase(expMonthYear)) {
+	        driver.findElement(By.xpath("//a[@data-handler='next']")).click();
+	        actMonthYear = driver.findElement(monthYearLocator).getText();
+	        System.out.println("Switched to: " + actMonthYear);
+	    }
+
+	    driver.findElement(dayLocator).click();
+	}
+
 
 }

@@ -1,6 +1,7 @@
 package com.qa.opencart.base;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterMethod;
 
 import java.util.Properties;
 
@@ -14,18 +15,20 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import com.qa.opencart.factory.DriverFactory;
+import com.qa.opencart.pages.AddUserPage;
 import com.qa.opencart.pages.HomePage;
 import com.qa.opencart.pages.LoginPage;
-
+import com.qa.opencart.pages.UserInformationPage;
 import com.qa.opencart.utils.LogUtil;
 
 import io.qameta.allure.Description;
 
-//@Listeners(ChainTestListener.class)
+@Listeners(ChainTestListener.class)
 public class BaseTest {
 	
 	WebDriver driver;
@@ -35,13 +38,15 @@ public class BaseTest {
 	
 	protected LoginPage loginPage;
 	protected HomePage homepage;
+	protected AddUserPage adduserpage;
+	protected UserInformationPage userinfo;
 	
 	private static final Logger log = LogManager.getLogger(BaseTest.class);
 
 	
 	@Description("init the driver and properties")
 	@Parameters({"browser","browserversion","testname"})
-	@BeforeTest
+	@BeforeMethod
 	public void setup(String browserName, String  browserVersion, String  testname) {
 		df = new DriverFactory();
 		prop = df.initProp();
@@ -62,22 +67,22 @@ public class BaseTest {
 
 	
 	
-	@AfterMethod //will be running after each @test method
+	//@AfterMethod //will be running after each @test method
 	public void attachScreenshot(ITestResult result) {
 		if(!result.isSuccess()) {//only for failure test cases -- true
 			log.info("---screenshot is taken---");
 			ChainTestListener.embed(DriverFactory.getScreenshotFile(), "image/png");
 		}
 		
-		//ChainTestListener.embed(DriverFactory.getScreenshotFile(), "image/png");
+		ChainTestListener.embed(DriverFactory.getScreenshotFile(), "image/png");
 
 
 	}
 	
 	
-	@AfterMethod
+	
 	@Description("closing the browser..")
-	@AfterTest
+	@AfterMethod
 	public void tearDown() {
 		driver.quit();
 		log.info("----closing the browser----");

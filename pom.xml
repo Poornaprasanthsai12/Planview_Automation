@@ -17,7 +17,7 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<aspectj.version>1.9.19</aspectj.version>
-		<selenium.version>4.35.0</selenium.version>
+		<selenium.version>4.36.0</selenium.version>
 		<suiteXmlFile>src/test/resources/testrunners/testng_chrome.xml </suiteXmlFile>
 	</properties>
 

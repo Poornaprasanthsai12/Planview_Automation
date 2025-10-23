@@ -29,7 +29,7 @@ public class DriverFactory {
 
 	WebDriver driver;
 	Properties prop;
-	OptionsManager optionsManager;
+	
 
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
 	public static String highlight;
@@ -53,37 +53,29 @@ public class DriverFactory {
 		log.info("browser name : " + browserName);
 
 		ChainTestListener.log("browser name: " + browserName);
-		optionsManager = new OptionsManager(prop);
+		
 
 		highlight = prop.getProperty("highlight");
 		switch (browserName.toLowerCase().trim()) {
 		case "chrome":
-			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
-				// run on remote/selenium grid server/aws/machine
-				initRemoteDriver("chrome");
-			} else {
-				// run it on local:
+			
+				
 				tlDriver.set(new ChromeDriver());
-			}
-			break;
+			
+			    break;
 		case "edge":
-			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
-				// run on remote/selenium grid server/aws/machine
-				initRemoteDriver("edge");
-			} else {
-				// run it on local:
+			
+				
 				tlDriver.set(new EdgeDriver());
-			}
-			break;
+		
+			    break;
 		case "firefox":
-			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
-				// run on remote/selenium grid server/aws/machine
-				initRemoteDriver("firefox");
-			} else {
+			
 				// run it on local:
 				tlDriver.set(new FirefoxDriver());
-			}
-			break;
+			
+			    break;
+			    
 		case "safari":
 			tlDriver.set(new SafariDriver());
 			break;
@@ -99,46 +91,8 @@ public class DriverFactory {
 		return getDriver();
 	}
 
-	// run it on remote- grid
-	private void initRemoteDriver(String browserName) {
+	
 
-		switch (browserName) {
-		case "chrome":
-			try {
-				tlDriver.set(
-						new RemoteWebDriver(new URL(prop.getProperty("huburl")), optionsManager.getChromeOptions()));
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-			break;
-
-		case "firefox":
-			try {
-				tlDriver.set(
-						new RemoteWebDriver(new URL(prop.getProperty("huburl")), optionsManager.getFirefoxOptions()));
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-			break;
-
-		case "edge":
-			try {
-				tlDriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")), optionsManager.getEdgeOptions()));
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-			break;
-
-		default:
-			System.out.println("this browser is not supported on Selenium GRID server..." + browserName);
-			throw new BrowserException("===INVALID BROWSER===");
-		}
-
-	}
-
-	/**
-	 * getDriver: get the local thready copy of the driver
-	 */
 
 	public static WebDriver getDriver() {
 		return tlDriver.get();
